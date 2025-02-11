@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import {
+	Icon,
 	ICredentialDataDecryptedObject,
 	ICredentialTestRequest,
 	ICredentialType,
@@ -11,6 +12,7 @@ import {
 export class ShopwareAdminCredentialsApi implements ICredentialType {
 	name = 'shopwareAdminCredentialsApi';
 	displayName = 'Shopware Admin Credentials API';
+	icon: Icon = 'file:shopware.svg';
 	documentationUrl = 'https://example.com';
 	properties: INodeProperties[] = [
 		{

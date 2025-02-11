@@ -8,14 +8,15 @@ const properties = parser.build();
 
 export class ShopwareAdminNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Shopware Admin Node',
 		name: 'shopwareAdminNode',
+		displayName: 'Shopware',
+		icon: 'file:shopware.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Shopware Admin Node',
+		description: 'Shopware',
 		defaults: {
-			name: 'Shopware Admin Node',
+			name: 'Shopware',
 		},
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-inputs-wrong-regular-node
 		inputs: [NodeConnectionType.Main],
