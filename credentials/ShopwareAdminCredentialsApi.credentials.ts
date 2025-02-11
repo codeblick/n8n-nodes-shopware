@@ -63,6 +63,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 				...requestOptions.headers,
 				Authorization: `Bearer ${access_token}`,
 			},
+			baseURL: credentials.domain as string,
 		};
 
 		return requestOptionsWithAuth;
