@@ -1,5 +1,5 @@
 {
-	"name": "@codeblick/n8n-nodes-shopware",
+	"name": "@c0d3bl1ck/n8n-nodes-shopware",
 	"version": "0.1.0",
 	"description": "Community nodes to connect Shopware 6 with n8n.",
 	"keywords": [
