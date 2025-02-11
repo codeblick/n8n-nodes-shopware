@@ -2,6 +2,7 @@ import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import {
 	ICredentialDataDecryptedObject,
+	ICredentialTestRequest,
 	ICredentialType,
 	IHttpRequestOptions,
 	INodeProperties,
@@ -66,4 +67,19 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 
 		return requestOptionsWithAuth;
 	}
+
+	test: ICredentialTestRequest = {
+		request: {
+			url: '={{$credentials.domain}}/api/_info/version',
+		},
+		rules: [
+			{
+				type: 'responseCode',
+				properties: {
+					value: 200,
+					message: 'Expected response code to be 200',
+				},
+			},
+		],
+	};
 }

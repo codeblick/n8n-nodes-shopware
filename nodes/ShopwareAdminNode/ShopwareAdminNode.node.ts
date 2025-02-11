@@ -31,7 +31,7 @@ export class ShopwareAdminNode implements INodeType {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
-			baseURL: '={{$credentials.url}}',
+			baseURL: '={{$credentials.domain}}/api',
 		},
 		properties,
 	};
