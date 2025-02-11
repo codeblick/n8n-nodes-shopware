@@ -12,11 +12,7 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9.1.4
-      - run: pnpm config set auto-install-peers true
-      - run: pnpm install
+      - run: npm ci
       - run: npm run build
       - run: npm publish
         env:
