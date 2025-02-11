@@ -15,6 +15,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9.1.4
+      - run: pnpm config set auto-install-peers true
       - run: pnpm install
       - run: npm run build
       - run: npm publish
