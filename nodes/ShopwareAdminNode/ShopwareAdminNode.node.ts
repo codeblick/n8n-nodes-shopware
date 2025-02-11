@@ -12,6 +12,7 @@ export class ShopwareAdminNode implements INodeType {
 		name: 'shopwareAdminNode',
 		group: ['transform'],
 		version: 1,
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Shopware Admin Node',
 		defaults: {
 			name: 'Shopware Admin Node',
@@ -26,6 +27,13 @@ export class ShopwareAdminNode implements INodeType {
 				required: true,
 			},
 		],
+		requestDefaults: {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			baseURL: '={{$credentials.url}}',
+		},
 		properties,
 	};
 }

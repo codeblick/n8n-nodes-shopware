@@ -14,10 +14,10 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 	documentationUrl = 'https://example.com';
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Domain',
-			name: 'domain',
+			displayName: 'URL',
+			name: 'url',
 			type: 'string',
-			default: 'https://example.com',
+			default: 'https://example.com/api',
 		},
 		{
 			displayName: 'Client ID',
@@ -45,7 +45,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 				'Content-Type': 'application/json',
 			},
 			method: 'POST',
-			url: credentials.domain + '/api/oauth/token',
+			url: credentials.url + '/oauth/token',
 			data: {
 				grant_type: 'client_credentials',
 				client_id: credentials.clientId,
@@ -63,7 +63,6 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 				...requestOptions.headers,
 				Authorization: `Bearer ${access_token}`,
 			},
-			baseURL: credentials.domain as string,
 		};
 
 		return requestOptionsWithAuth;
@@ -71,7 +70,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			url: '={{$credentials.domain}}/api/_info/version',
+			url: '={{$credentials.url}}/_info/version',
 		},
 		rules: [
 			{
