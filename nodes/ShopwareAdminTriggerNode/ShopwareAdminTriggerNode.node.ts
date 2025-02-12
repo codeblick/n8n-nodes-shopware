@@ -69,19 +69,24 @@ export class ShopwareAdminTriggerNode implements INodeType {
 	webhookMethods = {
 		default: {
 			async checkExists(this: IHookFunctions): Promise<boolean> {
-				const webhookData = this.getWorkflowStaticData('node');
+				const response = await axios({
+					...(await authenticate.call(this)),
+					url: `/search/webhook`,
+					method: 'POST',
+					data: {
+						page: 1,
+						limit: 100,
+						filter: [
+							{
+								type: 'equals',
+								field: 'name',
+								value: `n8n-${this.getNode().id}`,
+							},
+						],
+					},
+				});
 
-				if (webhookData.webhookId === undefined) {
-					return false;
-				}
-
-				try {
-					await axios({
-						...(await authenticate.call(this)),
-						url: `/webhook/${webhookData.webhookId}`,
-						method: 'GET',
-					});
-				} catch (error) {
+				if (response.data.total === 0) {
 					return false;
 				}
 
@@ -89,13 +94,12 @@ export class ShopwareAdminTriggerNode implements INodeType {
 			},
 			async create(this: IHookFunctions): Promise<boolean> {
 				const webhookUrl = this.getNodeWebhookUrl('default');
-				const webhookData = this.getWorkflowStaticData('node');
 
 				const eventName = this.getNodeParameter('eventName') as string;
 				const onlyLiveVersion = this.getNodeParameter('onlyLiveVersion') as boolean;
 
 				try {
-					const result = await axios({
+					await axios({
 						...(await authenticate.call(this)),
 						url: '/webhook',
 						method: 'POST',
@@ -106,8 +110,6 @@ export class ShopwareAdminTriggerNode implements INodeType {
 							onlyLiveVersion,
 						},
 					});
-
-					webhookData.webhookId = result.data.id;
 				} catch (error) {
 					return false;
 				}
@@ -115,19 +117,34 @@ export class ShopwareAdminTriggerNode implements INodeType {
 				return true;
 			},
 			async delete(this: IHookFunctions): Promise<boolean> {
-				const webhookData = this.getWorkflowStaticData('node');
+				const response = await axios({
+					...(await authenticate.call(this)),
+					url: `/search/webhook`,
+					method: 'POST',
+					data: {
+						page: 1,
+						limit: 100,
+						filter: [
+							{
+								type: 'equals',
+								field: 'name',
+								value: `n8n-${this.getNode().id}`,
+							},
+						],
+					},
+				});
 
-				try {
-					await axios({
-						...(await authenticate.call(this)),
-						url: `/webhook/${webhookData.webhookId}`,
-						method: 'DELETE',
-					});
-				} catch (error) {
-					return false;
+				for (const webhookData of response.data.data) {
+					try {
+						await axios({
+							...(await authenticate.call(this)),
+							url: `/webhook/${webhookData.id}`,
+							method: 'DELETE',
+						});
+					} catch (error) {
+						return false;
+					}
 				}
-
-				delete webhookData.webhookId;
 
 				return true;
 			},
