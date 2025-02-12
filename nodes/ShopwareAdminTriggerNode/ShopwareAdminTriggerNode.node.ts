@@ -18,6 +18,7 @@ export class ShopwareAdminTriggerNode implements INodeType {
 		icon: 'file:shopware.svg',
 		group: ['trigger'],
 		version: 1,
+		subtitle: '={{$parameter["eventName"]}}',
 		description: 'Shopware Trigger',
 		defaults: {
 			name: 'Shopware Trigger',
@@ -54,6 +55,7 @@ export class ShopwareAdminTriggerNode implements INodeType {
 				type: 'string',
 				default: '',
 				required: true,
+				hint: 'https://developer.shopware.com/docs/resources/references/app-reference/webhook-events-reference.html',
 			},
 			{
 				displayName: 'Only Live Version',
@@ -105,7 +107,7 @@ export class ShopwareAdminTriggerNode implements INodeType {
 						},
 					});
 
-					webhookData.webhookId = result.data.data.id;
+					webhookData.webhookId = result.data.id;
 				} catch (error) {
 					return false;
 				}

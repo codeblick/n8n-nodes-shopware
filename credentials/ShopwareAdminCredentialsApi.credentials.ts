@@ -13,7 +13,8 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 	name = 'shopwareAdminCredentialsApi';
 	displayName = 'Shopware Admin Credentials API';
 	icon: Icon = 'file:shopware.svg';
-	documentationUrl = 'https://example.com';
+	documentationUrl =
+		'https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen?category=shopware-6-en/settings/system';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'URL',
