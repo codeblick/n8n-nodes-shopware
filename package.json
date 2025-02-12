@@ -1,6 +1,6 @@
 {
 	"name": "@c0d3bl1ck/n8n-nodes-shopware",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Community nodes to connect Shopware 6 with n8n.",
 	"keywords": [
 		"n8n-community-node-package"
@@ -38,7 +38,8 @@
 			"dist/credentials/ShopwareAdminCredentialsApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/ShopwareAdminNode/ShopwareAdminNode.node.js"
+			"dist/nodes/ShopwareAdminNode/ShopwareAdminNode.node.js",
+			"dist/nodes/ShopwareAdminTriggerNode/ShopwareAdminTriggerNode.node.js"
 		]
 	},
 	"devDependencies": {
