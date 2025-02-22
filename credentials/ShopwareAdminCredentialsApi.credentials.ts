@@ -51,7 +51,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 		},
 	};
 
-	/* async authenticate(
+	async authenticate(
 		credentials: ICredentialDataDecryptedObject,
 		requestOptions: IHttpRequestOptions,
 	): Promise<IHttpRequestOptions> {
@@ -81,7 +81,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 		};
 
 		return requestOptionsWithAuth;
-	} */
+	}
 
 	test: ICredentialTestRequest = {
 		request: {
