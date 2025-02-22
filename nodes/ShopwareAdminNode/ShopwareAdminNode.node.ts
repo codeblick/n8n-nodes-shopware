@@ -104,7 +104,8 @@ export class ShopwareAdminNode implements INodeType {
 		icon: 'file:shopware.svg',
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
+		subtitle:
+			'={{$parameter["operation"] && ($parameter["operation"] + ": ") + $parameter["resource"]}}',
 		description: 'Shopware',
 		defaults: {
 			name: 'Shopware',
