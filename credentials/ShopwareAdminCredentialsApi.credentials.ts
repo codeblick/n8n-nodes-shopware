@@ -39,8 +39,6 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 		},
 	];
 
-	genericAuth = true;
-
 	async authenticate(
 		credentials: ICredentialDataDecryptedObject,
 		requestOptions: IHttpRequestOptions,
