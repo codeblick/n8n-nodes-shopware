@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import {
+	IAuthenticateGeneric,
 	Icon,
 	ICredentialDataDecryptedObject,
 	ICredentialTestRequest,
@@ -39,7 +40,18 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 		},
 	];
 
-	async authenticate(
+	genericAuth = true;
+
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				Authorization: '=Bearer {{$credentials.accessToken}}',
+			},
+		},
+	};
+
+	/* async authenticate(
 		credentials: ICredentialDataDecryptedObject,
 		requestOptions: IHttpRequestOptions,
 	): Promise<IHttpRequestOptions> {
@@ -69,7 +81,7 @@ export class ShopwareAdminCredentialsApi implements ICredentialType {
 		};
 
 		return requestOptionsWithAuth;
-	}
+	} */
 
 	test: ICredentialTestRequest = {
 		request: {
