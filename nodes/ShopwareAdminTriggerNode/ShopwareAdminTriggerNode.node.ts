@@ -55,7 +55,7 @@ export class ShopwareAdminTriggerNode implements INodeType {
 				type: 'string',
 				default: '',
 				required: true,
-				hint: 'https://developer.shopware.com/docs/resources/references/app-reference/webhook-events-reference.html',
+				hint: '<a href="https://developer.shopware.com/docs/resources/references/app-reference/webhook-events-reference.html">Webhook Event Reference</a>',
 			},
 			{
 				displayName: 'Only Live Version',
